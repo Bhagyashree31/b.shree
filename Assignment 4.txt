@@ -1,0 +1,256 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int len,ch,row,col,n[4][4],n1[4][4],n3[4][4];
+     int i,j;
+     int counter;
+
+    for ( row=0;row<=3;row++)
+    {
+        cout<<"\n";
+        for(col=0;col<=3;col++)
+        {
+
+            cin>>n[row][col];
+
+        }
+    }
+
+
+    for ( row=0;row<=3;row++)
+        {
+            cout<<"\n";
+            for(col=0;col<=3;col++)
+            {
+
+                cin>>n1[row][col];
+
+            }
+        }
+
+    cout<<"\n1.MATRIX";
+    cout<<"\n2.SPARS MATRIX";
+    cout<<"\n3.TRANSPOSE";
+    cout<<"\n4.ADDITION";
+    cout<<"\n5.FAST TRANSPOSE";
+
+    cout<<"\nEnter your choice";
+    cin>>ch;
+
+     switch (ch)
+{
+     case 1:
+         for ( row=0;row<=3;row++)
+                 {
+                     cout<<"\n";
+                     for(col=0;col<=3;col++)
+                     {
+
+                         cout<<"\t"<<n[row][col];
+
+                     }
+                 }                                               // matrix 1
+
+         for ( row=0;row<=3;row++)
+                 {
+                     cout<<"\n";
+                     for(col=0;col<=3;col++)
+                     {
+
+                         cin>>n1[row][col];
+
+                     }
+                 }                                                //matrix 2
+
+
+           break;
+     case 2:
+
+         cout<<"Spars of matrix 1";
+         cout<<"\n";
+         cout<<"ROW"<<"\t"<<"COL"<<"\t"<<"NON ZERO VALUE"<<endl;
+         counter=0;
+
+
+            for (i=0;i<=3;i++)
+            {
+                for(j=0;j<=3;j++)
+                {
+                  if(n[i][j]!=0)
+                   {
+                      counter++;
+
+                     }
+                }
+            }
+            cout<<row<<"\t"<<col<<"\t"<<counter<<endl;
+
+        for (i=0;i<=3;i++)
+        {
+            for(j=0;j<=3;j++)
+            {
+              if(n[i][j]!=0)
+               {
+                 cout<<i<<"\t"<<j<<"\t"<<n[i][j]<<endl;
+                 }
+            }
+        }
+
+
+         cout<<"Spars of matrix 2";
+         cout<<"\n";
+
+         cout<<"ROW"<<"\t"<<"COL"<<"\t"<<"NON ZERO VALUE"<<endl;
+         counter=0;
+
+
+            for (i=0;i<=3;i++)
+            {
+                for(j=0;j<=3;j++)
+                {
+                  if(n1[i][j]!=0)
+                   {
+                      counter++;
+
+                     }
+                }
+            }
+            cout<<row<<"\t"<<col<<"\t"<<counter<<endl;
+
+        for (i=0;i<=3;i++)
+        {
+            for(j=0;j<=3;j++)
+            {
+              if(n1[i][j]!=0)
+               {
+                 cout<<i<<"\t"<<j<<"\t"<<n1[i][j]<<endl;
+                 }
+            }
+        }
+        break;
+
+     case 3:
+
+          for (i=0;i<=3;i++)
+                 {
+                      cout<<"\n";
+                     for(j=0;j<=3;j++)
+                     {
+
+                          cout<<n[j][i];
+
+                     }
+                 }
+         break;
+
+         for (i=0;i<=3;i++)
+                 {
+                      cout<<"\n";
+                     for(j=0;j<=3;j++)
+                     {
+
+                          cout<<n1[j][i];
+
+                     }
+                 }
+         break;
+
+
+     case 4:
+
+         for (i=0;i<=3;i++)
+                  {
+                      for(j=0;j<=3;j++)
+                      {
+                          n3[i][j]=n[i][j]+n1[i][j];
+                      }
+                  }
+
+
+         for (i=0;i<=3;i++)
+                  {
+                      cout<<"\n";
+                      for(j=0;j<=3;j++)
+                      {
+                          cout<<"\t"<<n3[i][j];
+                      }
+                  }
+
+
+
+     case 5:
+           int terms[col] ;
+         for(int i = 0 ; i < col ; i++)            //Initialization of terms array to 0
+        {
+            terms[i] = 0;
+        }
+            int rpos[col] ;
+            rpos[0] = 1;
+            for(int i = 1 ; i < col ; i++ )            //Initialization of rpos array to 0
+        {
+            rpos[i] = 0 ;
+        }
+
+        for(int j = 0 ; j < col ; j++ ) //Fills the terms array by checking the condition
+        {
+                for(int i = 0 ; i < row ; i++)
+            {
+                if(n[i][j] != 0)
+                {
+                    (terms[j])++;
+                }
+            }
+        }
+
+        for(int i = 1 ; i < col ; i++) //Fills the rpos array
+            {
+                rpos[i] = rpos[i-1] + terms[i-1];
+            }
+
+        for(int i = 0 ; i < len ; i++)
+            {
+                for(int j = 0 ; j < col ; j++)
+                {
+                    if(n1[i][1] == j)
+                        {
+                            n3[rpos[j]][0] = n1[i][1];
+                            n3[rpos[j]][1] = n1[i][0];
+                            n3[rpos[j]][2] = n1[i][2];
+                            (rpos[j])++;
+
+                        }
+                }
+            }
+
+                cout << endl << "Fast transpose:" << endl;
+                cout << "\n R " << " C " << " V " << endl;
+                cout << "----------------" << endl;
+            for(int i = 1 ; i < len + 1 ; i++)
+            {
+               for (int j = 0 ; j < 3 ; j++)
+                {
+                    cout << " " << n3[i][j] << " ";
+                }
+                cout << endl;
+            }
+              cout << endl <<endl;
+
+
+
+         break;
+
+
+
+
+
+}
+
+
+
+
+
+    return 0;
+}
+

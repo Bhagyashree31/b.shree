@@ -1,0 +1,160 @@
+#include <iostream>
+#include<cstring>
+using namespace std;
+     int r,p,avg,m;
+     string name;
+     char att,choice;
+
+
+
+ class data
+{ public:
+         int m;
+
+   void accept()
+    {
+        cout<<"Enter roll no"<<endl;
+        cin>>r;
+        cout<<"Enter name"<<endl;
+        cin>>name;
+
+
+
+
+        cout<<"Marks obtained"<<endl;
+        cin>>m;
+        cout<<"enter attendanse (p for present and a for absent)"<<endl;
+        cin>>att;
+
+    }
+
+
+      void display()
+        {
+
+               if(att=='a')
+            {
+
+              cout<<"\n";
+
+              cout<<r<<"\t\t\t"<<name<<"\t\t";
+            }
+            else
+            {
+                cout<<"\n";
+            }
+        }
+
+
+
+
+
+};
+
+    int main()
+{               int i,j,n,s=0,temp,tempc=0,c=1,p,ch;
+                float avg;
+
+                cout<<"Enter number of students:";
+                cin>>n;
+                data a[n];
+
+          do
+             {
+
+
+                    cout<<"1.Add new"<<endl;
+                    cout<<"2.list  of absent students"<<endl;
+                    cout<<"3.Average"<<endl;
+                    cout<<"4.Min & Max"<<endl;
+                    cout<<"5.Most occuring"<<endl;
+                    cout<<"Enter your choice"<<endl;
+                    cin>>ch;
+
+                   switch(ch)
+                {
+                            case 1:
+
+                                   for(i=0;i<n;i++)
+                                   {
+                                       a[i].accept();
+                                   }
+
+                                      cout<<"\n";
+                                         break;
+
+                            case 2:
+
+
+                                 cout<<"List of absent students are:"<<endl;
+                                 cout<<"\n";
+                                 cout<<"Roll no\t\t\tName"<<endl;
+
+                                    a[i].display();
+                                    cout<<"\n";
+                                  break;
+
+                           case 3:
+
+
+                                 for(i=0;i<n;i++)
+                                  {
+                                       s=s+a[i].m;
+
+                                  }
+                                           avg=s/n;
+                                            cout<<"average="<<avg;
+                                             break;
+
+                        case 4:
+
+                           for(i=0;i<n;i++)
+                           {
+                              for(j=i+1;j<n;j++)
+                               {
+                                     if(a[i].m<a[j].m)
+                                      {
+                                        temp=a[i].m;
+                                        a[i].m=a[j].m;
+                                        a[j].m=temp;
+                                    }
+
+                                }
+                           }
+                                   cout<<"\nmin="<<a[n-1].m;
+                                    cout<<"\nmax="<<a[0].m;
+                                            break;
+
+
+                         case 5:
+
+                               for(i=0;i<n;i++)
+                                {
+                                       temp=a[i].m;
+                                        tempc++;
+                                       for(j=i+1;j<n;j++)
+                                      {
+                                           if(a[j].m==temp)
+                                           { tempc++;
+                                              if(tempc>c)
+                                                {
+                                                     p=temp;
+                                                    c=tempc;
+                                                }
+
+                                            }
+                                       }
+                                }
+                               cout<<"\nMost occuring="<<p;
+                                           break;
+
+
+     }
+          cout<<"Enter y if you want to continue";
+           cin>>choice;
+
+  } while(choice=='y'||choice=='Y');
+
+          return 0;
+}
+

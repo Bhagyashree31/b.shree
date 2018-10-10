@@ -1,0 +1,72 @@
+#include<iostream>
+using namespace std;
+class stack
+{
+public:
+    int stk[20];
+    char exp[10],ch;
+    int top;
+    void accept()
+    {
+        cout<<"enter the exp";
+        cin>>exp;
+    }
+
+    void push(char ch)
+    {
+    top++;
+    stk[top]=ch;
+    }
+
+    void pop()
+    {
+    if(top==-1)
+    cout<<"empty stack";
+    else
+    top--;
+    }
+};
+int main()
+{
+stack s1;
+s1.top=-1;
+s1.accept();
+    int i=0;
+
+        while(s1.exp[i]!='\0')
+        {
+            s1.ch=s1.exp[i];
+        switch(s1.ch)
+        {
+            case  '(':s1.push(s1.ch);
+                  break;
+            case  '{':s1.push(s1.ch);
+                  break;
+            case  '[':s1.push(s1.ch);
+                  break;
+            case  ')':if(s1.stk[s1.top]=='(')
+                  {
+                    s1.pop();
+                  }
+                  break;
+            case  '}':if(s1.stk[s1.top]=='{')
+                  {
+                    s1.pop();
+                  }
+                  break;
+            case  ']':if(s1.stk[s1.top]=='[')
+                  {
+                    s1.pop();
+                  }
+                  break;
+        }
+        i++;
+        }
+
+    if(s1.top==-1)
+    cout<<"well para";
+    else
+    cout<<"not well para";
+
+}
+
